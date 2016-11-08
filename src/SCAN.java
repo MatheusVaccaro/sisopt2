@@ -18,8 +18,12 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import java.io.File;
 import java.io.IOException;
 import static java.lang.Math.abs;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 
 
 public class SCAN implements DiskScheduler{
@@ -35,9 +39,25 @@ public class SCAN implements DiskScheduler{
     
     private int[] SCANify(int[] requestString){
     	//cria uma cópia da lista para preservar o requestString original
-    	int[] result = requestString.clone();
+    	int[] aux = requestString.clone();
     	
-    	
+    	Arrays.sort(aux);
+    	int[] result = new int[aux.length + 1];
+    	int i = 0;
+    	for(int j = 0; j < aux.length; j++){
+    		if(aux[j] >= initCilindro){
+    			result[i] = aux[j];
+    			i++;
+    		}
+    	}
+    	result[i] = numCilindros - 1;
+    	i++;
+    	for(int j = aux.length - 1; j >= 0; j--){
+    		if(aux[j] < initCilindro){
+    			result[i] = aux[j];
+    			i++;
+    		}
+    	}
     	return result;
     }
     
