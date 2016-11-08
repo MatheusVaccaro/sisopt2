@@ -15,7 +15,7 @@ public class TP2 {
         
         int[] requestString = {98, 183, 37, 122, 14, 124, 65, 67};
         int numCilindros = 200;
-        int initCilindro = 37;
+        int initCilindro = 53;
         
         DiskScheduler fcfs = new FCFS(requestString, numCilindros, initCilindro);
         System.out.println("Número de cilindros percorridos com o algoritmo FCFS: " + fcfs.serviceRequests());
@@ -28,6 +28,15 @@ public class TP2 {
         DiskScheduler scan = new SCAN(requestString, numCilindros, initCilindro);
         System.out.println("Número de cilindros percorridos com o algoritmo SCAN: " + scan.serviceRequests());
         scan.printGraph("scan.jpg");
+        
+        DiskScheduler cscan = new CSCAN(requestString, numCilindros, initCilindro);
+        System.out.println("Número de cilindros percorridos com o algoritmo CSCAN: " + cscan.serviceRequests());
+        cscan.printGraph("cscan.jpg");
+        
+        DiskScheduler look = new LOOK(requestString, numCilindros, initCilindro);
+        System.out.println("Número de cilindros percorridos com o algoritmo LOOK: " + look.serviceRequests());
+        look.printGraph("look.jpg");
+        
    }
     
 }
