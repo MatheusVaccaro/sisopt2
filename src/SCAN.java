@@ -42,6 +42,8 @@ public class SCAN implements DiskScheduler{
     	int[] aux = requestString.clone();
     	
     	Arrays.sort(aux);
+    	
+    	//pega os cilindros maiores que o cilindro inicial e os coloca no vetor em ordem crescente
     	int[] result = new int[aux.length + 1];
     	int i = 0;
     	for(int j = 0; j < aux.length; j++){
@@ -50,8 +52,12 @@ public class SCAN implements DiskScheduler{
     			i++;
     		}
     	}
+    	
+    	//adiciona último cilindro ao vetor
     	result[i] = numCilindros - 1;
     	i++;
+    	
+    	//pega os cilindros menores que o cilindro inicial e os coloca no vetor em ordem decrescente
     	for(int j = aux.length - 1; j >= 0; j--){
     		if(aux[j] < initCilindro){
     			result[i] = aux[j];
