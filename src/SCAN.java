@@ -22,42 +22,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class SSTF implements DiskScheduler{
+public class SCAN implements DiskScheduler{
     private int[] requestString;
     private int numCilindros;
     private int initCilindro;
     
-    public SSTF(int[] requestString, int numCilindros, int initCilindro){
+    public SCAN(int[] requestString, int numCilindros, int initCilindro){
         this.numCilindros = numCilindros;
         this.initCilindro = initCilindro;
-        this.requestString = SSTFify(requestString);
+        this.requestString = SCANify(requestString);
     }
     
-    private int[] SSTFify(int[] requestString){
+    private int[] SCANify(int[] requestString){
     	//cria uma cópia da lista para preservar o requestString original
     	int[] result = requestString.clone();
     	
-    	//compara os valores da lista com o cilindro atual(na primeira execução é o initCilindro)
-    	//em busca dos cilindros com menor tempo de encontro
-    	int currentCilinder = initCilindro;
-    	for(int i = 0; i < result.length; i++){
-    		int shortestTime = Integer.MAX_VALUE;
-    		int shortestPos = 0;
-    		for(int j = i; j < result.length; j++){
-    			int dif = abs(currentCilinder - result[j]);
-    			if(dif <= shortestTime){
-    				shortestTime = dif;
-    				shortestPos = j;
-    			}
-    		}
-    		
-    		//manda o valor com o menor tempo de encontro para o início da lista
-    		int aux = result[i];
-    		result[i] = result[shortestPos];
-    		result[shortestPos] = aux;
-    		
-    		currentCilinder = result[i];
-    	}
+    	
     	return result;
     }
     
@@ -124,7 +104,7 @@ public class SSTF implements DiskScheduler{
         try {
             ChartUtilities.saveChartAsJPEG(new File(filename), chart, 500, 300);
         } catch (IOException ex) {
-            Logger.getLogger(SSTF.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SCAN.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
