@@ -15,7 +15,7 @@ public class TP2 {
         
         int[] requestString = {98, 183, 37, 122, 14, 124, 65, 67};
         int numCilindros = 200;
-        int initCilindro = 53;
+        int initCilindro = 37;
         
         DiskScheduler fcfs = new FCFS(requestString, numCilindros, initCilindro);
         System.out.println("Número de cilindros percorridos com o algoritmo FCFS: " + fcfs.serviceRequests());

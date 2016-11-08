@@ -87,7 +87,7 @@ public class SCAN implements DiskScheduler{
         int i;
         int y_axis = requestString.length * 10;
         
-        XYSeries series = new XYSeries("SSTF");
+        XYSeries series = new XYSeries("SCAN");
         
         /* Adiciona o pontos XY do gráfico de linhas. */
         series.add(y_axis, initCilindro);
@@ -103,7 +103,7 @@ public class SCAN implements DiskScheduler{
         /* Gera o gráfico de linhas */
         JFreeChart chart = ChartFactory.createXYLineChart(
             /* Title */
-            "SSTF Scheduler Algorithm",
+            "SCAN Scheduler Algorithm",
             /* Title x*/
             "",
             /* Title y */
