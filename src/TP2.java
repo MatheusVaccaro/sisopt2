@@ -1,5 +1,10 @@
-
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 /* Skeleton do trabalho TP2. */
 
@@ -7,16 +12,24 @@ public class TP2 {
 
     /**
      * @param args the command line arguments
+     * @throws IOException 
+     * @throws NumberFormatException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NumberFormatException, IOException {
         /* Leia requestString, número de cilindros e cilindro inicial 
            do arquivo de entrada conforme o formato especificado no trabalho.
            O arquivo de entrada é passado por args. */
+    	
+    	BufferedReader in = new BufferedReader(new FileReader(new File(args[0])));
         
-        int[] requestString = {98, 183, 37, 122, 14, 124, 65, 67};
-        int numCilindros = 200;
-        int initCilindro = 53;
-        
+    	int numCilindros = Integer.parseInt(in.readLine());
+    	int initCilindro = Integer.parseInt(in.readLine());
+    	String[] requests = in.readLine().split(" ");
+    	int[] requestString = new int[requests.length];
+
+    	requestString = Arrays.asList(requests).stream().mapToInt(e -> Integer.parseInt(e)).toArray();	
+    	in.close();
+    	
         DiskScheduler fcfs = new FCFS(requestString, numCilindros, initCilindro);
         System.out.println("N�mero de cilindros percorridos com o algoritmo FCFS: " + fcfs.serviceRequests());
         fcfs.printGraph("fcfs.jpg");
